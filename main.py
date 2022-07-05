@@ -1,23 +1,49 @@
 import json
-from urllib.request import urlopen
-import os
-import sys
-import time
 import requests
+from datetime import datetime
+import getpass
+import random
+import ctypes
 
+username = getpass.getuser()
+main_dir = 'C:\\Users\\'+ username +'\\AppData\\Roaming\\AutoHomeWallpaper\\'
+subdirs = ['Wallpapers', 'Bin']
+def log(text):
+    """Log text to file."""
+    now = datetime.now()
+    dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
 
-#with urlopen('https://raw.githubusercontent.com/luca-alexander-thomas/AutoHome-Wallpaper/main/wallpaper.json') as response:
-  #  source = response.read()
+    logtext = dt_string + ': ' + text
+    with open(main_dir + 'ath-wp.log', 'a') as f:
+        f.write(logtext + '\n')
+        print(logtext)
+    return
+def download(url):
+    """Download file from url and save it to maindir/filename."""
+    if url.find('/'):
+       filename = url.rsplit('/', 1)[1]
+    r = requests.get(url, allow_redirects=True)
+    open(main_dir + filename, 'wb').write(r.content)
+    log('Downloaded: ' + filename)
+def down_load(url, subdir, filename):
+    """Download file from url and save it to subdir/filename."""
+    if url.find('/'):
+        rootfilename = url.rsplit('/', 1)[1]
+        root_filename = '  original: ' + rootfilename
+    directory = main_dir + subdir + '\\'
+    r = requests.get(url, allow_redirects=True)
+    open(directory + filename, 'wb').write(r.content)
+    log('Downloaded: ' + filename + root_filename)
+log('Started')
 
-with open('wallpaper.json') as f:
-    source = f.read()
 
 url = 'https://raw.githubusercontent.com/luca-alexander-thomas/AutoHome-Wallpaper/main/wallpaper.json'
-if url.find('/'):
-    filename = url.rsplit('/', 1)[1]
-    print(filename)
-r = requests.get(url, allow_redirects=True)
-open('bin/' + filename, 'wb').write(r.content)
+
+download(url)
+
+with open(main_dir + 'wallpaper.json') as f:
+    source = f.read()
+
 
 check = 'not checked'
 raw_data = json.loads(source)
@@ -28,16 +54,13 @@ count_len = len(raw_data['pictures'])
 for item in raw_data['meta']:
     count_meta = item['count']
 
-
 if count_len == count_meta:
     check = True
-    print(check)
+    log('Count Check: ' + str(check))
 else:
     check = False
-    print(check)
+    log('Count Check: ' + str(check))
     exit()
-
-
 
 for item in raw_data['pictures']:
     id = item['id']
@@ -45,6 +68,10 @@ for item in raw_data['pictures']:
     picture_dict[id] = url
 
 
-print(picture_dict['1'])
+pic_url = random.choice(list(picture_dict.values()))
+log('Random URL: ' + pic_url)
+down_load(pic_url, 'Wallpapers', 'Wallpaper.jpg')
+pic_path = main_dir + 'Wallpapers\\Wallpaper.jpg'
+ctypes.windll.user32.SystemParametersInfoW(20, 0, pic_path , 0)
 
 
