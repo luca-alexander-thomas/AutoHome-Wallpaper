@@ -1,0 +1,19 @@
+{
+    "june": [
+        {
+            "id": "1",
+            "url": "https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fwww.tagung-hochschwarzwald.de%2Fextension%2Fportal-htg%2Fvar%2Fstorage%2Fimages%2Fmedia%2Fbibliothek%2Farchiv-tagungsmacher%2Fslider-bilder%2Ftitisee%2F319028-1-ger-DE%2Ftitisee.jpg&sp=1655461416T4ae3ad357fc482a1734e50d9f7e0dbbe9a7ba0bbcd592ab4d8a83fcddf3f3d63",
+            "name": "Berge und See"
+        },
+        {
+            "id": "2",
+            "url": "https://eu-browse.startpage.com/av/anon-image?piurl=https%3A%2F%2Fwww.planet-wissen.de%2Fsendungen%2Fwald-buchen-deutschland-100~_v-gseagaleriexl.jpg&sp=1655461526Tf8416eb070da81b5a8436ffbdb5243d5657eb73c79372160d0f6aaa17e36f7e9",
+            "name": "Wald"
+        },
+        {
+            "id": "3",
+            "url": "https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fwww.kraeuterhaus.de%2Fblog%2Fwp-content%2Fuploads%2F2020%2F06%2Fksb_beitragsbild_gruenlippmuschel.jpg&sp=1655461674T7453b968709a127b4fc4392e3e57e4a7fb2ee980e9158c50570ae0ce600963d3",
+            "name": "Meer"
+        }
+    ]
+}
