@@ -4,10 +4,14 @@ from datetime import datetime
 import getpass
 import random
 import ctypes
+import os
+import platform
+import subprocess
 
 username = getpass.getuser()
 main_dir = 'C:\\Users\\'+ username +'\\AppData\\Roaming\\AutoHomeWallpaper\\'
 subdirs = ['Wallpapers', 'Bin']
+url = open(main_dir + 'url.txt', 'r').read()
 def log(text):
     """Log text to file."""
     now = datetime.now()
@@ -34,12 +38,26 @@ def down_load(url, subdir, filename):
     r = requests.get(url, allow_redirects=True)
     open(directory + filename, 'wb').write(r.content)
     log('Downloaded: ' + filename + root_filename)
+def ping():
+    """
+    Returns True if host (str) responds to a ping request.
+    Remember that a host may not respond to a ping (ICMP) request even if the host name is valid.
+    """
+    # Option for the number of packets as a function of
+    param = '-n' if platform.system().lower()=='windows' else '-c'
+    # Building the command. Ex: "ping -c 1 google.com"
+    command = ['ping', param, '1', '1.1.1.1']
+    return subprocess.call(command) == 0
 log('Started')
 
 
-url = 'https://raw.githubusercontent.com/luca-alexander-thomas/AutoHome-Wallpaper/main/wallpaper.json'
-
-download(url)
+if ping() == False:
+    log('No internet connection')
+    log('Exiting')
+    exit()
+if ping() == True:
+    log('Internet connection found')
+    download(url)
 
 with open(main_dir + 'wallpaper.json') as f:
     source = f.read()
