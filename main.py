@@ -10,5 +10,7 @@ with urlopen('https://raw.githubusercontent.com/luca-alexander-thomas/AutoHome-W
 
 raw_data = json.loads(source)
 data = json.dumps(raw_data, indent=4, sort_keys=True)
-print(data)
+
+for item in raw_data:
+    print(item)
 
