@@ -39,5 +39,5 @@ https://github.com/luca-alexander-thomas/AutoHome-Wallpaper/raw/main/Libarys/lan
 "C:\Users\%USERNAME%\AppData\Roaming\AutoHomeWallpaper\Wallpapers"
 ```
 <br>
-Now you can execute the  ```main.py```  Script.
+Now you can execute the  ``` main.py ```  Script.
 
