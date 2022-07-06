@@ -71,6 +71,7 @@ count_len = len(raw_data['pictures'])
 
 for item in raw_data['meta']:
     count_meta = item['count']
+log(str(count_len) + ';  ' + str(count_meta))
 
 if count_len == count_meta:
     check = True
