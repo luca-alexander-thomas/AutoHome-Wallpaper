@@ -4,31 +4,35 @@ from datetime import datetime
 import getpass
 import random
 import ctypes
-import os
 import platform
 import subprocess
 
 username = getpass.getuser()
-main_dir = 'C:\\Users\\'+ username +'\\AppData\\Roaming\\AutoHomeWallpaper\\'
+main_dir = 'C:\\Users\\' + username + '\\AppData\\Roaming\\AutoHomeWallpaper\\'
 subdirs = ['Wallpapers', 'Bin']
 url = open(main_dir + 'url.txt', 'r').read()
+
+
 def log(text):
     """Log text to file."""
     now = datetime.now()
     dt_string = now.strftime("%d.%m.%Y %H:%M:%S")
 
     logtext = dt_string + ': ' + text
-    with open(main_dir + 'ath-wp.log', 'a') as f:
-        f.write(logtext + '\n')
+    with open(main_dir + 'ath-wp.log', 'a') as file:
+        file.write(logtext + '\n')
         print(logtext)
     return
-def download(url):
+
+
+def download(url,filename):
     """Download file from url and save it to maindir/filename."""
     if url.find('/'):
-       filename = url.rsplit('/', 1)[1]
+       rootfilename = url.rsplit('/', 1)[1]
     r = requests.get(url, allow_redirects=True)
     open(main_dir + filename, 'wb').write(r.content)
-    log('Downloaded: ' + filename)
+    log('Downloaded: ' + filename + '  original: ' + rootfilename)
+    return filename
 def down_load(url, subdir, filename):
     """Download file from url and save it to subdir/filename."""
     if url.find('/'):
@@ -57,9 +61,13 @@ if ping() == False:
     exit()
 if ping() == True:
     log('Internet connection found')
-    download(url)
+    download(url,'library.json')
+#jsonfilename =
 
-with open(main_dir + 'wallpaper.json') as f:
+#library = str(main_dir) + str(jsonfilename)
+#print('+'+library+'+')
+
+with open(main_dir+'library.json', ) as f:
     source = f.read()
 
 
