@@ -34,9 +34,10 @@ In the ```url.txt``` File you write the URL of the Library in expample the Stand
 https://github.com/luca-alexander-thomas/AutoHome-Wallpaper/raw/main/Libarys/landscape.json
 ```
 <br>
+
 ```
 "C:\Users\%USERNAME%\AppData\Roaming\AutoHomeWallpaper\Wallpapers"
 ```
 <br>
-Now you can execute the ```main.py``` Script.
+Now you can execute the  ```main.py```  Script.
 
