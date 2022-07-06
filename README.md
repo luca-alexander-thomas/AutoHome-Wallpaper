@@ -42,3 +42,5 @@ https://github.com/luca-alexander-thomas/AutoHome-Wallpaper/raw/main/Libarys/lan
 
 Now you can execute the ```main.py``` Script.
 
+##How to Contribute
+Read the ```Contribute.md``` [here](https://github.com/luca-alexander-thomas/AutoHome-Wallpaper/Contribute.md)
